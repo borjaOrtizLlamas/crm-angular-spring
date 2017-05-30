@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.borja.crm.dto.Worker" table="workers" catalog="CRM">
+		<id name="nif" type="string">
+		    <column name="nif" length="9" />
+		</id>
+
+		<property name="name" type="string">
+		    <column name="name" length="50" not-null="true" />
+		</property>
+
+		<property name="surname" type="string">
+		    <column name="surname" length="100" not-null="true" />
+		</property>
+
+		<property name="age" type="int">
+		    <column name="age"  not-null="true" />
+		</property>
+
+		<property name="sex" type="string">
+		    <column name="sex"  not-null="true" />
+		</property>
+
+		<property name="married1" type="int">
+		    <column name="married"  not-null="true" />
+		</property>
+
+		<property name="numberSon" type="int">
+		    <column name="numberSons"  not-null="true" />
+		</property>
+
+		<property name="salary" type="int">
+		    <column name="salary"  not-null="true" />
+		</property>
+
+		<property name="fristDay" type="date">
+		    <column name="fristDay"  not-null="true" />
+		</property>
+
+		<property name="lastDay" type="date">
+		    <column name="lastDay"  not-null="false" />
+		</property>
+
+	<!--<set name="rolUsuario" table="user_roles" cascade="all-delete-orphan"	inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="username" not-null="true" />
+            </key>
+            <one-to-many class="com.company.model.RolUsuarios" />
+        </set>-->
+    </class>
+</hibernate-mapping>
