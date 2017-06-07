@@ -6,8 +6,8 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
 
@@ -60,6 +60,8 @@
 			<list>
 				<value>orm/Querys.hbm.xml</value>
 				<value>orm/Worker.hbm.xml</value>
+				<value>orm/Rol.hbm.xml</value>
+				<value>orm/User.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -72,13 +74,24 @@
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
-
 	<bean id="transactionManager"
 	    class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 			
 	<bean id="serviceWorkers" class="com.borja.crm.dao.WorkerIMPL">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="loginService" class="com.borja.crm.services.LoginService">
+		<property name="servicioUsuarios" ref="servicioUsuarios" />
+	</bean>
+
+	<bean id="servicioUsuarios" class="com.borja.crm.services.ServicioUsuarios">
+		<property name="userIMPL" ref="UserIMPL" />
+	</bean>
+
+	<bean id="UserIMPL" class="com.borja.crm.dao.UserIMPL">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 

@@ -42,12 +42,5 @@
 		<property name="lastDay" type="date">
 		    <column name="lastDay"  not-null="false" />
 		</property>
-
-	<!--<set name="rolUsuario" table="user_roles" cascade="all-delete-orphan"	inverse="true" lazy="false" fetch="select">
-            <key>
-                <column name="username" not-null="true" />
-            </key>
-            <one-to-many class="com.company.model.RolUsuarios" />
-        </set>-->
     </class>
 </hibernate-mapping>

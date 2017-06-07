@@ -14,5 +14,10 @@
         <![CDATA[from Worker]]>
 	</query>
 
+	<query name="getUser">
+        <![CDATA[from User u where user = ?]]>
+	</query>
+
+
 </hibernate-mapping>
     
