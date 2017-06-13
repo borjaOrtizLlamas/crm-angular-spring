@@ -59,23 +59,7 @@ public class WorkerController {
 		return dto;
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "isDniInBBDD", method =  RequestMethod.POST)
-	public RequestDTO dniValidation(Map<String, Object> model, String dni ) {
-		RequestDTO dto = new RequestDTO();
-		try{
-			Validacion val = new Validacion(); 
-			val.setOK(serviceWorkers.isDniInBBDD(dni));
-			dto.setObjet(val);
-			dto.setError(false);
-			return dto;
-		}catch (Exception e) {
-			dto.setError(true);
-			dto.setNameError(e.getMessage());
-			return dto;
-		}
-	}
-	
+		
 	@ResponseBody
 	@RequestMapping(value = "allWorker", method = { RequestMethod.POST, RequestMethod.GET })
 	public RequestDTO getAllWorker() {

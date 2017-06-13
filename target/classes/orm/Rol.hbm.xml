@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.borja.crm.dto.login.Rol" table="ROL" catalog="CRM">
+	
+		<id name="id" type="int">
+		    <column name="id" />
+		</id>
+		
+		<property name="name" type="string">
+		    <column name="name" length="16" not-null="true" />
+		</property>
+		
+		
+		<set name="users" table="rol_user"  cascade="all-delete-orphan"	inverse="true" lazy="false" fetch="select">
+			<key>
+				<column name="rol" not-null="true" />
+			</key>
+            <many-to-many entity-name="com.borja.crm.dto.login.User">
+                <column name="user" not-null="false" />
+            </many-to-many>
+		</set>
+
+	</class>	
+</hibernate-mapping>
