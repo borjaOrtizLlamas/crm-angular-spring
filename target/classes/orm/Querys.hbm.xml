@@ -14,6 +14,10 @@
         <![CDATA[from Worker]]>
 	</query>
 
+	<query name="getWokerByDni">
+        <![CDATA[from Worker where dni = ?]]>
+	</query>
+
 	<query name="getUser">
         <![CDATA[from User u where user = ?]]>
 	</query>

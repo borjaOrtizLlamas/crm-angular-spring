@@ -1,13 +1,16 @@
 package com.borja.crm.dao;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.hibernate.SessionFactory;
 import com.borja.crm.dto.Worker;
 
 public class WorkerIMPL implements WorkerDAO {
 
-	
+    private static final Logger LOGGER = Logger.getLogger(WorkerIMPL.class.getName());
+    
 	SessionFactory sessionFactory;
 	
 	@Override
@@ -17,7 +20,8 @@ public class WorkerIMPL implements WorkerDAO {
 		}else {
 			worker.setMarried1(0);
 		}
-		sessionFactory.getCurrentSession().save(worker);
+		Serializable i = sessionFactory.getCurrentSession().save(worker);
+		LOGGER.info("Serializable res:" + i.toString());
 	}
 
 
@@ -43,6 +47,13 @@ public class WorkerIMPL implements WorkerDAO {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+
+	@Override
+	public boolean isDniInBBDD(String dni) {
+		if (sessionFactory.getCurrentSession().getNamedQuery("getWokerByDni").setParameter(0, dni).list().size() == 0) return false;
+		else return true; 
 	}
 
 }

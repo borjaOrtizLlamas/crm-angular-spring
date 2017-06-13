@@ -2,15 +2,6 @@ var app = angular.module('app', []);
 
 // se ejecutan antes de todos los demas
 app.constant("calculosConstantes", {
-	sumar : function(a, b) {
-		return a + b;
-	},
-	restar : function(a, b) {
-		return a - b;
-	},
-	calculoIRPF : function(a) {
-		return a * 0.8;
-	},
 	baseUrl : "./usuario"
 });
 

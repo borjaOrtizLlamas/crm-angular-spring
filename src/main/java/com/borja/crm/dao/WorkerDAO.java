@@ -21,6 +21,10 @@ public interface WorkerDAO {
 
 	@Transactional(readOnly = true)
 	public List<Worker> allWorkersInactive();
+	
+	@Transactional(readOnly = true)
+	public boolean isDniInBBDD(String dni);
+
 
 
 }

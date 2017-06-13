@@ -14,13 +14,13 @@ import com.borja.crm.dto.UserLoginForm;
 public class UserController {
 	
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String login(Map<String, Object> model){
 		model.put("loginUser",new UserLoginForm()); 
 		return "login";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public String loginPost(
 			@ModelAttribute("loginUser") UserLoginForm user,
 			Map<String, Object> model){

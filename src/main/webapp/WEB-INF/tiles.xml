@@ -8,6 +8,10 @@
 		<put-attribute name="header" value="/WEB-INF/layauts/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/layauts/footer.jsp" />
+		<put-attribute name="js" value="" />
+		<put-attribute name="css" value=""/>		
+		<put-attribute name="ng-app" value=""/>		
+		
 	</definition>
 
 	<definition name="principal" extends="base">
@@ -16,6 +20,13 @@
 	
 	<definition name="login" extends="base">
 		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+	</definition>
+
+	<definition name="workerForm" extends="base">
+		<put-attribute name="body" value="/WEB-INF/jsp/workerForm.jsp" />
+		<put-attribute name="js" value="/crm/resources/js/workersFrom.js" />
+		<put-attribute name="css" value="/crm/resources/styles/workerForm.css" />
+		<put-attribute name="ng-app" value="workersFrom"/>		
 	</definition>
 
 	<definition name="pruebas"	template="/WEB-INF/layauts/pruebas.jsp">
