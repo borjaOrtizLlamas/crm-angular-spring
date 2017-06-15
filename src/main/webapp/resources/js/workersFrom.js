@@ -6,7 +6,6 @@ workersFrom.config([ 'baseUrl', 'remoteResourceProvider',
 		'validacionesProvider',
 		function(baseUrl, remoteResourceProvider, validacionesProvider) {
 			remoteResourceProvider.setBaseUrl(baseUrl);
-
 		} ]);
 
 workersFrom.controller("workAddController", [
@@ -18,25 +17,38 @@ workersFrom.controller("workAddController", [
 
 			$scope.nifValidate = function() {
 				if (validaciones.validateDNI($scope.worker.nif)) {
-					$scope.validaciones.falloDni = "DNI";
-					remoteResource.getValidatePromise("isDniInBBDD", $scope.worker.nif).then(
-						function(data) {
-							$scope.validaciones.falloDni = data.objet.isOK;
-							alert($scope.validaciones.falloDni);
+					remoteResource.getValidatePromise("isDniInBBDD/"+$scope.worker.nif, null).then(
+						function(data) {1
+							alert(data.objet.ok); 
+							if(data.objet.ok){
+								$scope.validaciones.falloDni =true;
+								$scope.validaciones.falloDniValue = 0;
+								//styles
+								$scope.validateCSS.hasError=false;
+								$scope.validateCSS.hasSuccess=true;
+							}else{
+								badDni($scope,2); 
+							};
 						},
 						function(status) {
-							alert("Ha fallado la petición. Estado HTTP:"
-									+ status);
+							alert("Ha fallado la petición. Estado HTTP:" + status);
 						});
 				} else {
-					$scope.validaciones.falloDni = "DNI MAL ESCRITO";
+					badDni($scope,1); 				
 				}
 			}
 
 			$scope.validaciones = {
-				falloDni : "¿cambia?"
+				falloDniValue: null,				
+				falloDni: false
+				
 			};
-
+			
+			$scope.validateCSS = {
+				hasError:true,
+				hasSuccess:false
+			}; 
+			
 			$scope.worker = {
 				nif : "",
 				name : "",
@@ -52,18 +64,28 @@ workersFrom.controller("workAddController", [
 			};
 
 			$scope.newWorker = function() {
-				remoteResource.get("addWorker", $scope.worker).then(
-					function(data) {
-						if(data.error == true){
-							alert("error:" + data.nameError); 
-						}
-					},
-					function(status) {
-						alert("Ha fallado la petición. Estado HTTP:"
-								+ status);
-					});
+				if($scope.validaciones.falloDni){
+					remoteResource.get("addWorker", $scope.worker).then(
+						function(data) {
+							if(data.error == true){
+								alert("error:" + data.nameError); 
+							}
+						},
+						function(status) {
+							alert("Ha fallado la petición. Estado HTTP:" + status);
+						});
+				}else{
+					alert("no validamos"); 
+				}
 			}
-
 		}
-
 ]);
+
+
+function badDni($scope,number) {
+	$scope.validaciones.falloDniValue = number;
+	$scope.validaciones.falloDni = false; 
+	//stlyes
+	$scope.validateCSS.hasError=true;
+	$scope.validateCSS.hasSuccess=false;
+}

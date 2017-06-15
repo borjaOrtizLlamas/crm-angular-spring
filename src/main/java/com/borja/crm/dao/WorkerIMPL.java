@@ -51,12 +51,14 @@ public class WorkerIMPL implements WorkerDAO {
 
 
 	@Override
-	public boolean isDniInBBDD(String dni) {
-		List<Worker> workers = sessionFactory.getCurrentSession()
+	public boolean isDniInBBDD(String nif) {
+		Worker workers = (Worker) sessionFactory.getCurrentSession()
 				.getNamedQuery("getWokerByDni")
-				.setParameter(0, dni).list(); 
-		if (workers.size() == 0) return false; 
-		else return true; 
+				.setParameter(0, nif)
+				.uniqueResult();	
+
+		if (workers == null) return true; 
+		else return false; 
 	}
 
 }

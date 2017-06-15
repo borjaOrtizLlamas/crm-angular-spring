@@ -3,9 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.borja.crm.dto.Worker" table="workers" catalog="CRM">
-		<id name="nif" type="string">
-		    <column name="nif" length="9" />
-		</id>
+
+			<id name="nif" type="string">
+				<column name="nif" length="9" />
+			</id>
 
 		<property name="name" type="string">
 		    <column name="name" length="50" not-null="true" />

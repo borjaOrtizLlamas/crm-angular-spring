@@ -1,73 +1,91 @@
 var app = angular.module("app", []);
+var validaciones = angular.module("valid", []);
 
-function RemoteResource($q,$http,baseUrl) {
-	this.get=function(action,dataE) {
+function RemoteResource($q, $http, baseUrl) {
+	this.get = function(action, dataE) {
 		var defered = $q.defer();
 		var promise = defered.promise;
-		 
+
 		$http({
-			method: 'POST', 
-			url: baseUrl+action+'?'+$("#token").val(),
-			data: dataE 
+			method : 'POST',
+			url : baseUrl + action + '?' + $("#token").val(),
+			data : dataE
 		}).success(function(data, status, headers, config) {
 			defered.resolve(data);
-		}).error(function(data, status, headers, config) {
-			if (status === 400) {
-				defered.reject(data);
-			} else {
-				throw new Error("Fallo obtener los datos:" + status + "\n" + data);
-			}
-		});
+		}).error(
+				function(data, status, headers, config) {
+					if (status === 400) {
+						defered.reject(data);
+					} else {
+						throw new Error("Fallo obtener los datos:" + status
+								+ "\n" + data);
+					}
+				});
 		return promise;
-  	}
+	},	this.getValidatePromise = function(action, dataE) {
+		var defered = $q.defer();
+		var promise = defered.promise;
+		$http({
+			method : 'POST',
+			url : "/crm/valid/" + action + '?' + $("#token").val(),
+			data : dataE
+		}).success(function(data, status, headers, config) {
+			defered.resolve(data);
+		}).error(
+				function(data, status, headers, config) {
+					if (status === 400) {
+						defered.reject(data);
+					} else {
+						throw new Error("Fallo obtener los datos:" + status
+								+ "\n" + data);
+					}
+				});
+		return promise;
+	}
 }
 
 function RemoteResourceProvider() {
-  var _baseUrl;
-  this.setBaseUrl=function(baseUrl) {
-    _baseUrl=baseUrl;
-  }
-  this.$get=['$q','$http',function($q,$http) {
-	  	return new RemoteResource($q,$http,_baseUrl);
-  }];
+	var _baseUrl;
+	this.setBaseUrl = function(baseUrl) {
+		_baseUrl = baseUrl;
+	}
+	this.$get = [ '$q', '$http', function($q, $http) {
+		return new RemoteResource($q, $http, _baseUrl);
+	} ];
 }
 
-app.provider("remoteResource",RemoteResourceProvider);
+app.provider("remoteResource", RemoteResourceProvider);
 
-var valid = angular.module("valid", []);
+function ValidacionObject($q, $http) {
+	this.validateDNI = function(dni) {
+		var numero;
+		var letr;
+		var letra;
+		var expresion_regular_dni;
 
-function ValidacionObject($q,$http,baseUrl) {
-	this.validateDNI=function(action,dataE) {
-		var defered = $q.defer();
-		var promise = defered.promise;
+		expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
 
-		$http({
-			method: 'POST', 
-			url: baseUrl+action+'?'+$("#token").val(),
-			data: dataE 
-		}).success(function(data, status, headers, config) {
-			defered.resolve(data);
-		}).error(function(data, status, headers, config) {
-			if (status === 400) {
-				defered.reject(data);
+		if (expresion_regular_dni.test(dni) == true) {
+			numero = dni.substr(0, dni.length - 1);
+			letr = dni.substr(dni.length - 1, 1);
+			numero = numero % 23;
+			letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+			letra = letra.substring(numero, numero + 1);
+			if (letra != letr.toUpperCase()) {
+				return false;
 			} else {
-				throw new Error("Fallo obtener los datos:" + status + "\n" + data);
+				return true;
 			}
-		});
-		return promise;
-  	}
+		} else {
+			return false;
+		}
+	}
 }
 
 function ValidacionesProvider() {
-  var _baseUrl;
-  this.setBaseUrl=function(baseUrl) {
-    _baseUrl=baseUrl;
-  }
-  this.$get=['$q','$http',function($q,$http) {
-	  	return new ValidacionObject($q,$http,_baseUrl);
-  }];
+	this.$get = [ '$q', '$http', function($q, $http) {
+		return new ValidacionObject($q, $http);
+	} ];
 }
 
-valid.provider("validaciones",RemoteResourceProvider);
-
-
+validaciones.provider("validaciones", ValidacionesProvider);

@@ -8,6 +8,8 @@ public class Worker implements Serializable {
 	private String nif;
 	private String name;
 	private String surname;
+	private String address;
+
 	private Integer age;
 	private String sex;
 	private boolean married;
@@ -85,6 +87,13 @@ public class Worker implements Serializable {
 	}
 	public void setLastDay(Date lastDay) {
 		this.lastDay = lastDay;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 

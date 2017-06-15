@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html ng-app="<tiles:getAsString name="ng-app"/>">
 <head>
@@ -14,8 +16,8 @@
 			<a class="navbar-brand" href="#">BORJA CRM</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">Home</a></li>
-			<li><a href="#">Page 1</a></li>
+			<li class="active"><a href="/crm/">Home</a></li>
+			<li><a href="/crm/worker/add"><spring:message code="label.menu.addWorker"/></a></li>
 			<li><a href="#">Page 2</a></li>
 			<li><a href="#">Page 3</a></li>
 		</ul>

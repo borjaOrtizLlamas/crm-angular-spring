@@ -3,13 +3,19 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.borja.crm.dto.Worker" table="workers" catalog="CRM">
+
 		<id name="nif" type="string">
-		    <column name="nif" length="9" />
+			<column name="nif" length="9" />
 		</id>
 
 		<property name="name" type="string">
 		    <column name="name" length="50" not-null="true" />
 		</property>
+
+		<property name="address" type="string">
+		    <column name="address" length="200" not-null="true" />
+		</property>
+
 
 		<property name="surname" type="string">
 		    <column name="surname" length="100" not-null="true" />

@@ -15,7 +15,7 @@
 	</query>
 
 	<query name="getWokerByDni">
-        <![CDATA[from Worker where dni = ?]]>
+        <![CDATA[from Worker  where nif = ?]]>
 	</query>
 
 	<query name="getUser">
