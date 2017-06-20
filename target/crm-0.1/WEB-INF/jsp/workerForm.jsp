@@ -5,14 +5,13 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <div class="container"  ng-controller="workAddController">
 	<form class="form-group">
-		<div class="row"  > 	 
+		<div class="row" > 	 
 			<div class="col-xs-12 col-sm-6" ng-class="validateCSS">	
 				<div class="row ">
 					<label for="nif" class="col-xs-2 col-sm-2 control-label"><spring:message code="label.nif"/></label>
 	 				<input class=" col-xs-10 col-sm-10 form-control" ng-change="nifValidate()" type="text" ng-model="worker.nif" />
 					<div ng-show="validaciones.falloDniValue===1"><spring:message code="label.dniWrong"/></div>
 					<div ng-show="validaciones.falloDniValue===2"><spring:message code="label.dniRepeat"/></div>
-					{{validaciones.falloDniValue}}
 				</div>
 			</div>
 			<label for="name" class="col-xs-2 col-sm-1"><spring:message code="label.name"/> </label>
@@ -46,9 +45,17 @@
 		 	<label for="lastDay" class="col-xs-2 col-sm-1"><spring:message code="label.lastDay"/> </label>
 		 	<input id="lastDay" class="col-xs-10 col-sm-5" name="lastDay" type="text" ng-model="worker.lastDay" />
 		</div>
-
-
- 		
+		<div class="row">
+		 	<label for="address" class="col-xs-1 col-sm-1"><spring:message code="label.address"/> </label>
+		 	<input id="address" class="col-xs-10 col-sm-5" name="address" type="text" ng-model="worker.address" />
+		 <div ng-hide="mapCheck">	<input id="address" class="col-xs-1 col-sm-1" type="checkbox"  ng-model="mapCheck" /><spring:message code="label.maps"/>
+		    </div>
+		    <ui-gmap-google-map class="col-xs-12 col-sm-6"   center="map.center" zoom="map.zoom">
+	<!-- 	        <ui-gmap-window coords="map.center" show="true" options="map.options"></ui-gmap-window>
+	 -->	</ui-gmap-google-map>
+		</div>
+		
+		hpñ{{mapss.latitude}}
    		<button type="button" class="btn btn-primary" ng-click="newWorker()">Click Me!</button>
 <br/><br/><br/>
 	 </form>

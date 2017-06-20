@@ -8,6 +8,7 @@
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>src/main/webapp/WEB-INF/spring-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/spring-security.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

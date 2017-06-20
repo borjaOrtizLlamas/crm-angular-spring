@@ -9,6 +9,9 @@
 
 <script src="/crm/resources/js/jsDefault/jquery-3.2.1.min.js" ></script>
 <script src="/crm/resources/js/jsDefault/bootstrap.min.js" ></script>
+<script src="/crm/resources/js/jsDefault/lodash.min.js"></script>
 <script src="/crm/resources/js/jsDefault/angular.min.js"></script>
-<script src="/crm/resources/js/jsDefault/ui-bootstrap.min.js"></script>
+<script src="http://rawgit.com/angular-ui/angular-google-maps/2.0.X/dist/angular-google-maps.js"></script>
+
+
 <script src="/crm/resources/js/script.js"></script>

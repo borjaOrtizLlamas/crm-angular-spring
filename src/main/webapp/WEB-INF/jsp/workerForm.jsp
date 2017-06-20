@@ -45,9 +45,16 @@
 		 	<label for="lastDay" class="col-xs-2 col-sm-1"><spring:message code="label.lastDay"/> </label>
 		 	<input id="lastDay" class="col-xs-10 col-sm-5" name="lastDay" type="text" ng-model="worker.lastDay" />
 		</div>
+		<div class="row">
+		 	<label for="address" class="col-xs-1 col-sm-1"><spring:message code="label.address"/> </label>
+		 	<input id="address" class="col-xs-10 col-sm-5" name="address" type="text" ng-model="worker.address" />
+		 <div ng-hide="mapCheck">	<input id="address" class="col-xs-1 col-sm-1" type="checkbox"  ng-model="mapCheck" /><spring:message code="label.maps"/>
+		    </div>
+		    <ui-gmap-google-map class="col-xs-12 col-sm-6"   center="map.center" zoom="map.zoom" events="map.events">
+			</ui-gmap-google-map>
+		</div>
+		
 
-
- 		
    		<button type="button" class="btn btn-primary" ng-click="newWorker()">Click Me!</button>
 <br/><br/><br/>
 	 </form>

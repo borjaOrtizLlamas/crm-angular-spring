@@ -9,6 +9,9 @@
     <!-- enable use-expressions -->
 	<http auto-config="true" use-expressions="true">
 		
+		<intercept-url pattern="/edicion**" access="hasAnyRole('ROL_USUARIO','ROL_ADMIN')" />
+		
+		
 		<access-denied-handler error-page="/403" />
 		<form-login login-page="/login"
 			login-processing-url="/j_spring_security_check" 		
