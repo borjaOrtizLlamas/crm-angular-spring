@@ -5,10 +5,12 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.borja.crm.dao.WorkerDAO;
 import com.borja.crm.dto.RequestDTO;
@@ -26,7 +28,9 @@ public class WorkerController {
 
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String workerFrom(Map<String, Object> model) {
+	public String anuncio(Map<String, Object> model) {	
+		
+		model.put("workerForm", new Worker()); 
 		return "workerForm";
 	}
 
@@ -37,8 +41,8 @@ public class WorkerController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "addWorker", method = RequestMethod.POST)
-	public RequestDTO workerFromAdd(Map<String, Object> model, @RequestBody Worker usuario) {
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public RequestDTO workerFromAdd(Map<String, Object> model, @ModelAttribute("workerForm") Worker usuario) {
 		try{
 			serviceWorkers.insertWorker(usuario);
 		}catch (Exception e) {

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,23 @@ public class BasicController {
 		return "principal";
 	}
 
+	@RequestMapping(value = "/demoAngularJS", method = RequestMethod.GET)
+	public String holaMundo2(Map<String, Object> model){
+		return "demoAngularJS";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/pruebaGet", method = RequestMethod.GET)
+	public  Worker dsadsa(Map<String, Object> model){
+		Worker wo = new Worker(); 
+		wo.setAddress("dsadsaadsa");
+		wo.setAge(1221);
+		wo.setName("dsadsadsa"); 
+		return wo;
+	}
+
+	
+	
 	@RequestMapping(value = "/pruebas", method = RequestMethod.GET)
 	public String peticion(){
 		return "pruebas";

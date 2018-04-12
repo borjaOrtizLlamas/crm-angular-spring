@@ -1,9 +1,14 @@
 package com.borja.crm.dao;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
-
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import javax.validation.ConstraintViolation;
 import org.hibernate.SessionFactory;
 import com.borja.crm.dto.Worker;
 
@@ -20,8 +25,21 @@ public class WorkerIMPL implements WorkerDAO {
 		}else {
 			worker.setMarried1(0);
 		}
-		Serializable i = sessionFactory.getCurrentSession().save(worker);
-		LOGGER.info("Serializable res:" + i.toString());
+		
+		
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Worker>> validateConstraintViolations =     validator.validate(worker, GrupoParaValidar.class); 
+		
+        for (ConstraintViolation<Worker> validateConstraintViolation  : validateConstraintViolations) {
+        	LOGGER.info(" validacion :" + validateConstraintViolation.getMessage());
+		}
+        
+        
+    	LOGGER.info("final validacion");
+
+//		Serializable i = sessionFactory.getCurrentSession().save(worker);
+//		LOGGER.info("Serializable res:" + i.toString());
 	}
 
 

@@ -52,7 +52,7 @@
 
 	<context:component-scan base-package="com.borja.crm.controller"></context:component-scan>
  
- 
+ <!-- 
  	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
@@ -89,17 +89,16 @@
 			</props>
 		</property>
 	</bean>
-	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
-	<bean id="transactionManager"
 	    class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-			
+ -->			
 	<bean id="serviceWorkers" class="com.borja.crm.dao.WorkerIMPL">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+<!-- 		<property name="sessionFactory" ref="sessionFactory" />
+ -->	
+ 	</bean>
 	
 	<bean id="loginService" class="com.borja.crm.services.LoginService">
 		<property name="servicioUsuarios" ref="servicioUsuarios" />
@@ -110,7 +109,8 @@
 	</bean>
 
 	<bean id="UserIMPL" class="com.borja.crm.dao.UserIMPL">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+<!-- 		<property name="sessionFactory" ref="sessionFactory" />
+ -->
+ 	</bean>
 
 </beans>

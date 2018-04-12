@@ -3,6 +3,14 @@ package com.borja.crm.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import com.borja.crm.dao.GrupoParaValidar;
+import com.borja.crm.dao.WorkerDAO;
+
 public class Worker implements Serializable {
 	
 	private String nif;
@@ -18,9 +26,14 @@ public class Worker implements Serializable {
 	private Integer salary;
 	private Date fristDay;
 	private Date lastDay;
-	
-	
-	
+
+	@Max(value = 5, groups = GrupoParaValidar.class)
+	private int sdasdsaa  = 7;
+
+    @NotNull(message="Email Address is compulsory", groups = GrupoParaValidar.class)
+    @Email(groups = GrupoParaValidar.class)
+	private String correo;
+
 	
 	public int getMarried1() {
 		return married1;
@@ -94,6 +107,18 @@ public class Worker implements Serializable {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getCorreo() {
+		return correo;
+	}
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+	public int getSdasdsaa() {
+		return sdasdsaa;
+	}
+	public void setSdasdsaa(int sdasdsaa) {
+		this.sdasdsaa = sdasdsaa;
 	}
 	
 

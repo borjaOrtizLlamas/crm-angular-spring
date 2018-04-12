@@ -35,37 +35,12 @@ workersFrom.controller("workAddController", [
 					'latitude' : 40.4165000,
 					'longitude' : -3.7025600
 				},
-				'zoom' : 10,
-				events : {
-					// This turns of events and hits against scope from gMap
-					// events this does speed things up
-					// adding a blacklist for watching your controller scope
-					// should even be better
-					// blacklist: ['drag', 'dragend','dragstart','zoom_changed',
-					// 'center_changed'],
-					tilesloaded : function(map, eventName, originalEventArgs) {
+				zoom : 10,
+				'events' : {
+					'tilesloaded' : function(map, eventName, originalEventArgs) {
 					},
-					click : function(mapModel, eventName, originalEventArgs) {
-						// 'this' is the directive's scope
-						$log.info("user defined event: " + eventName, mapModel,
-								originalEventArgs);
-
-						var e = originalEventArgs[0];
-						var lat = e.latLng.lat(), lon = e.latLng.lng();
-						$scope.mapss = {
-							id : 0,
-							options : {
-								labelContent : 'You clicked here ' + 'lat: '
-										+ lat + ' lon: ' + lon,
-								labelClass : "marker-labels",
-								labelAnchor : "50 0"
-							},
-							latitude : lat,
-							longitude : lon
-						};
-						// scope apply required because this event handler is
-						// outside of the angular domain
-						$scope.$evalAsync();
+					'click' : function(mapModel, eventName, originalEventArgs) {
+						alert("hola");
 					}
 				}
 			};
@@ -146,3 +121,21 @@ function badDni($scope, number) {
 	$scope.validateCSS.hasError = true;
 	$scope.validateCSS.hasSuccess = false;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

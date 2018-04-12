@@ -20,6 +20,12 @@
 
 
 
+	<definition name="demoAngularJS" template="/WEB-INF/jsp/demo.jsp">	
+	</definition>
+	
+
+
+
 	<definition name="principal" extends="base">
 		<put-attribute name="body" value="/WEB-INF/jsp/principal.jsp" />
 	</definition>
