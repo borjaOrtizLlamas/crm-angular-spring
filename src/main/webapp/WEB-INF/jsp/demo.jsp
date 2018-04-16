@@ -8,6 +8,7 @@
 	<title>Insert title here</title>
 	<script src="/crm/resources/js/jsDefault/jquery-3.2.1.min.js" ></script>
 	<script src="https://code.angularjs.org/1.3.0/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.3.0/angular-route.min.js"></script>
 	<script src="/crm/resources/js/demoangular.js"></script>
 </head>
 
@@ -36,6 +37,46 @@
 	<button ng-click="llamada()">peticion</button>
           
     <input type="text" ng-model="trabajador.age" /><br>      
-          
+<hr/>
+
+<table>
+  <thead>
+    <tr>
+      <th>IdProvincia</th>
+      <th>Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="provincia in provincias">
+      <td>{{provincia.idProvincia}}</td>
+      <td>{{provincia.nombre}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<select ng-model="provinciaSeleccion" ng-options="provincia as provincia.nombre for provincia in provincias track by provincia.idProvincia" >
+  <option value="">--Elige opcion--</option>
+</select>
+
+{{provinciaSeleccion.idProvincia}}
+          <hr/>
+<input type="checkbox" ng-model="modelo.showApellido">¿Mostrar apellido?
+<br>
+<div ng-if="modelo.showApellido">
+  Apellido: <input ng-model="modelo.apellido" >
+  <br>
+  El valor de "apellido" en el $scope del "ng-if" es : {{modelo.apellido}}
+</div>
+<hr/>
+<ng-include src="'/crm/resources/aIncluir.html'"></ng-include>
+----
+<ng-include src="aIncluir"></ng-include>
+
+
+
+<br><br><br><br><br><br><br><br><br>
+
+
+
 </body>
 </html>

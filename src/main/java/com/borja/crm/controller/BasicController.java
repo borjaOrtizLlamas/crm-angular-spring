@@ -38,6 +38,20 @@ public class BasicController {
 		return wo;
 	}
 
+//	@ResponseBody
+//	@RequestMapping(value = "/listaWorkers", method = RequestMethod.GET)
+//	public  List<Worker> dfdssfds(Map<String, Object> model){
+//		List<Worker> listita =new  ArrayList<>(); 
+//		Worker wo = new Worker(); 
+//		wo.setAddress("dsadsaadsa");
+//		wo.setAge(1221);
+//		wo.setName("dsadsadsa"); 
+//		listita.add(wo);
+//		
+//		
+//		
+//		return listita;
+//	}
 	
 	
 	@RequestMapping(value = "/pruebas", method = RequestMethod.GET)
